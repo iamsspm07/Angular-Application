@@ -1,0 +1,58 @@
+<h1>Find Employee</h1>
+<div class="col-4">
+  <form #findEmpForm="ngForm" (ngSubmit)="getEmployee(findEmpForm.value)">
+    <div class="form-group">
+      <label for="empid">Employee Id</label>
+      <div class="input-group">
+        <span class="input-group-addon"
+          ><i class="glyphicon glyphicon-user"></i
+        ></span>
+        <input
+          class="form-control"
+          type="text"
+          name="empid"
+          ngModel
+          #loginId="ngModel"
+          required
+        />
+      </div>
+    </div>
+
+    <input
+      type="submit"
+      value="Search"
+      [disabled]="!findEmpForm.valid"
+      class="mt-2 btn btn-primary"
+    />
+  </form>
+</div>
+<br />
+<hr />
+
+<div *ngIf="foundEmployee != null">
+  <h1>Employee Details</h1>
+  <table class="table table-striped table-hover table-bordered">
+    <thead class="table-success">
+      <tr>
+        <th>EmpNo</th>
+        <th>Name</th>
+        <th>Salary</th>
+        <th>Gender</th>
+        <th>DOJ</th>
+        <th>LoginId</th>
+        <th>Password</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{ foundEmployee.empNo }}</td>
+        <td>{{ foundEmployee.empName | lowercase }}</td>
+        <td>{{ foundEmployee.empSal }}</td>
+        <td>{{ foundEmployee.gender }}</td>
+        <td>{{ foundEmployee.doj | date }}</td>
+        <td>{{ foundEmployee.loginId }}</td>
+        <td>{{ foundEmployee.password }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
